@@ -1,4 +1,4 @@
-package au.edu.unsw.infs3634.cryptobag;
+package au.edu.unsw.infs3634.cryptobag.Entities;
 
 import au.edu.unsw.infs3634.cryptobag.Entities.CoinLoreResponse;
 import retrofit2.Call;
