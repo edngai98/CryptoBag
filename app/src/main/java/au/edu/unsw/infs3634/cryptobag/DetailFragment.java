@@ -69,6 +69,7 @@ public class DetailFragment extends Fragment {
             Glide.with(this)
                     .load("https://c1.coinlore.com/img/25x25/" + mCoin.getNameid().toLowerCase() + ".png")
                     .centerCrop()
+                    .override(75,75)
                     .into(((ImageView) rootView.findViewById(R.id.imageView)));
             ((TextView) rootView.findViewById(R.id.tvName)).setText(mCoin.getName());
             ((TextView) rootView.findViewById(R.id.tvSymbol)).setText(mCoin.getSymbol());

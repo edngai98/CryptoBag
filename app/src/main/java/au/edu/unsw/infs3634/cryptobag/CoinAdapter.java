@@ -74,9 +74,11 @@ public class CoinAdapter extends RecyclerView.Adapter<CoinAdapter.CoinViewHolder
         holder.name.setText(coin.getName());
         holder.value.setText(NumberFormat.getCurrencyInstance().format(Double.valueOf(coin.getPriceUsd())));
         holder.change.setText(coin.getPercentChange24h() + " %");
-        if (Double.parseDouble(coin.getPercentChange1h()) < 0) {
+        if (Double.parseDouble(coin.getPercentChange24h()) < 0.00) {
+            //red
             holder.change.setTextColor(Color.parseColor("#ff0006"));
         } else {
+            //green
             holder.change.setTextColor(Color.parseColor("#33cc5a"));
         }
 
