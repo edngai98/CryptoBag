@@ -33,7 +33,7 @@ public class DetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
     private Coin mCoin;
     private CoinDatabase coinDatabase;
-    public MainActivity context;
+    //
 
     public DetailFragment() {}
 
@@ -42,7 +42,7 @@ public class DetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-        coinDatabase = Room.databaseBuilder(context.getApplicationContext(), CoinDatabase.class, "myDB")
+        coinDatabase = Room.databaseBuilder(this.getContext(), CoinDatabase.class, "myDB")
                 .build();
 
         if(getArguments().containsKey(ARG_ITEM_ID)) {

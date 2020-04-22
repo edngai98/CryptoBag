@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -46,12 +49,14 @@ public class CoinAdapter extends RecyclerView.Adapter<CoinAdapter.CoinViewHolder
 
     public static class CoinViewHolder extends RecyclerView.ViewHolder  {
         public TextView name, value, change;
+        public ImageView image;
 
         public CoinViewHolder(View v) {
             super(v);
             name = v.findViewById(R.id.tvName);
             value = v.findViewById(R.id.tvValue);
             change = v.findViewById(R.id.tvChange);
+            image = v.findViewById(R.id.ivArt);
         }
     }
 
@@ -69,6 +74,11 @@ public class CoinAdapter extends RecyclerView.Adapter<CoinAdapter.CoinViewHolder
         holder.value.setText(NumberFormat.getCurrencyInstance().format(Double.valueOf(coin.getPriceUsd())));
         holder.change.setText(coin.getPercentChange24h() + " %");
         holder.itemView.setTag(coin);
+        Glide.with(holder.itemView.getContext())
+                .load("https://c1.coinlore.com/img/25x25/" + coin.getName().toLowerCase() + ".png")
+                .centerCrop()
+                .override(50,50)
+                .into(holder.image);
         holder.itemView.setOnClickListener(mOnClickListener);
     }
 
