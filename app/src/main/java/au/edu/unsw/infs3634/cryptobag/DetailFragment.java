@@ -13,8 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.room.DatabaseConfiguration;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -33,7 +36,8 @@ public class DetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
     private Coin mCoin;
     private CoinDatabase coinDatabase;
-    //
+
+
 
     public DetailFragment() {}
 
@@ -42,12 +46,11 @@ public class DetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-        coinDatabase = Room.databaseBuilder(this.getContext(), CoinDatabase.class, "myDB")
-                .build();
+        coinDatabase = Room.databaseBuilder(getContext(), CoinDatabase.class, "myDB").build();
 
         if(getArguments().containsKey(ARG_ITEM_ID)) {
 
-            new MyTask().execute(ARG_ITEM_ID);
+            new MyTask().execute(getArguments().getString(ARG_ITEM_ID));
         }
     }
 
@@ -63,6 +66,10 @@ public class DetailFragment extends Fragment {
 
         if(mCoin != null) {
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
+            Glide.with(this)
+                    .load("https://c1.coinlore.com/img/25x25/" + mCoin.getNameid().toLowerCase() + ".png")
+                    .centerCrop()
+                    .into(((ImageView) rootView.findViewById(R.id.imageView)));
             ((TextView) rootView.findViewById(R.id.tvName)).setText(mCoin.getName());
             ((TextView) rootView.findViewById(R.id.tvSymbol)).setText(mCoin.getSymbol());
             ((TextView) rootView.findViewById(R.id.tvValueField)).setText(formatter.format(Double.valueOf(mCoin.getPriceUsd())));

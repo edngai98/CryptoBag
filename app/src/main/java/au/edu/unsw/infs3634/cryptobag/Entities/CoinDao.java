@@ -14,8 +14,8 @@ public interface CoinDao {
     @Query("SELECT * FROM coin")
     List<Coin> getCoins();
 
-    @Query("SELECT * FROM coin WHERE id == :id")
-    Coin getCoin(String id);
+    @Query("SELECT * FROM coin WHERE id == :coinId")
+    Coin getCoin(String coinId);
 
     @Insert
     void insertCoins(Coin...coins);
