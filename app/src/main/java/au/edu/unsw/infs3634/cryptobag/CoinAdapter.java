@@ -2,6 +2,7 @@ package au.edu.unsw.infs3634.cryptobag;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,6 +74,12 @@ public class CoinAdapter extends RecyclerView.Adapter<CoinAdapter.CoinViewHolder
         holder.name.setText(coin.getName());
         holder.value.setText(NumberFormat.getCurrencyInstance().format(Double.valueOf(coin.getPriceUsd())));
         holder.change.setText(coin.getPercentChange24h() + " %");
+        if (Double.parseDouble(coin.getPercentChange1h()) < 0) {
+            holder.change.setTextColor(Color.parseColor("#ff0006"));
+        } else {
+            holder.change.setTextColor(Color.parseColor("#33cc5a"));
+        }
+
         holder.itemView.setTag(coin);
         Glide.with(holder.itemView.getContext())
                 .load("https://c1.coinlore.com/img/25x25/" + coin.getNameid().toLowerCase() + ".png")
