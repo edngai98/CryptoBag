@@ -75,7 +75,7 @@ public class CoinAdapter extends RecyclerView.Adapter<CoinAdapter.CoinViewHolder
         holder.change.setText(coin.getPercentChange24h() + " %");
         holder.itemView.setTag(coin);
         Glide.with(holder.itemView.getContext())
-                .load("https://c1.coinlore.com/img/25x25/" + coin.getName().toLowerCase() + ".png")
+                .load("https://c1.coinlore.com/img/25x25/" + coin.getNameid().toLowerCase() + ".png")
                 .centerCrop()
                 .override(50,50)
                 .into(holder.image);
